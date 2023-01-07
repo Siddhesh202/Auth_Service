@@ -61,12 +61,12 @@ class UserService{
                 throw {error: 'Invalid Token'};
             }
 
-            const user = this.userRepository.getById(isTokenVerified.id);
+            const user = await this.userRepository.getById(isTokenVerified.id);
             if(!user){
                 throw {error: 'No user with the corressponding token exists'};
             }
             return user.id;
-            
+
         } catch (error) {
             console.log("Something went wrong in the auth process on the service layer");
             throw {error};
